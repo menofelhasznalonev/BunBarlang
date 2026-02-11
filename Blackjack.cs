@@ -34,11 +34,11 @@ namespace BunBarlang
                 {
                     Console.WriteLine(item);
                 }
-                Console.WriteLine("Összértékük: TBA");
+                Console.WriteLine($"Összértékük: {ErtekKiszamitasa(jatekosKeze)}");
                 Console.WriteLine();
                 do
                 {
-                    Console.Write("Kér még lapot? (I/N)");
+                    Console.Write("Kér még lapot? (I/N): ");
                     tobbet = Console.ReadLine().ToUpper();
                 } while (tobbet != "N" && tobbet != "I");
                
@@ -62,9 +62,19 @@ namespace BunBarlang
 
         }
 
-        private void ErtekKiszamitasa(List<Kartya> kez)
+        private int ErtekKiszamitasa(List<Kartya> kez)
         {
             int ertek = 0;
+            int asz = 0;
+            
+            foreach (var item in kez)
+            {
+                if (item.Ertek == 1)
+                {
+                    asz++;
+                }
+            }
+
             foreach (var item in kez)
             {
                 if (item.Ertek >= 10)
@@ -73,7 +83,12 @@ namespace BunBarlang
                 }
                 else if (item.Ertek == 1)
                 {
-                    if (ertek + 11 > 21)
+
+                    if (asz > 1)
+                    {
+                        ertek += 11;
+                    }
+                    else if (ertek + 11 > 21)
                     {
                         ertek += 1;
                     }
@@ -87,6 +102,7 @@ namespace BunBarlang
                     ertek += item.Ertek;
                 }
             }
+            return ertek;
         }
     }
 }
