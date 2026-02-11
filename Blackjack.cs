@@ -15,50 +15,109 @@ namespace BunBarlang
         internal List<Kartya> JatekosKeze { get => jatekosKeze; set => jatekosKeze = value; }
         internal List<Kartya> HazKeze { get => hazKeze; set => hazKeze = value; }
 
-        public void JatekMenet(int tet)
+        public int JatekMenet(int tet, int pakliSzam)
         {
             Pakli pakli = new Pakli();
             int hanyadik = 0;
-            string tobbet = "";
-            int asz = 0;
+            string tobbet = "I";
 
-            pakli.PakliFeltoltese(2);
 
+            pakli.PakliFeltoltese(pakliSzam);
+
+            hanyadik = r.Next(pakli.List.Count - 1);
+            jatekosKeze.Add(pakli.List[hanyadik]);
+            pakli.List.RemoveAt(hanyadik);
+            Console.WriteLine($"Kártyái:\t {jatekosKeze[0]}");
+            Console.WriteLine($"Összértékük: {ErtekKiszamitasa(jatekosKeze)}");
+
+            Console.WriteLine();
             do
             {
+                Console.Write("Kér még lapot? (I/N): ");
+                tobbet = Console.ReadLine().ToUpper();
+            } while (tobbet != "N" && tobbet != "I");
+
+            while (tobbet != "N" && ErtekKiszamitasa(jatekosKeze) <= 21)
+            {
+
+                aszElore(jatekosKeze);
+
                 hanyadik = r.Next(pakli.List.Count - 1);
                 jatekosKeze.Add(pakli.List[hanyadik]);
                 pakli.List.RemoveAt(hanyadik);
                 Console.WriteLine("Kártyái:");
-                foreach (var item in  jatekosKeze)
+                foreach (var item in jatekosKeze)
                 {
                     Console.WriteLine(item);
                 }
                 Console.WriteLine($"Összértékük: {ErtekKiszamitasa(jatekosKeze)}");
-                Console.WriteLine();
-                do
+
+                if (ErtekKiszamitasa(jatekosKeze)  < 21)
                 {
-                    Console.Write("Kér még lapot? (I/N): ");
-                    tobbet = Console.ReadLine().ToUpper();
-                } while (tobbet != "N" && tobbet != "I");
-               
-                foreach (var item in jatekosKeze)
-                {
-                    asz++;
-                }
-                for (int i = 0; i < jatekosKeze.Count; i++)
-                {
-                    if(jatekosKeze[i].Ertek == 1 && asz > 0)
+                    Console.WriteLine();
+                    do
                     {
-                        jatekosKeze.Add(jatekosKeze[i]);
-                        jatekosKeze.RemoveAt(i);
-                        i--;
-                        asz--;
+                        Console.Write("Kér még lapot? (I/N): ");
+                        tobbet = Console.ReadLine().ToUpper();
+                    } while (tobbet != "N" && tobbet != "I");
+                }
+            }
+
+            if (ErtekKiszamitasa(jatekosKeze) == 21)
+            {
+                Console.WriteLine($"Gratulálok, 21 lett a végeredmény, nyertél {tet*3} Ft-ot");
+                tet = tet * 3;
+                return tet;
+            } else if (ErtekKiszamitasa(jatekosKeze) > 21)
+            {
+                Console.WriteLine($"Vesztettél {tet} Ft-ot");
+                tet = tet * -1;
+                return tet;
+            } else
+            {
+                bool mehet = true;
+                Console.WriteLine("Áz osztó kártyái: ");
+
+                while (mehet)
+                {
+
+                    aszElore(hazKeze);
+
+                    hanyadik = r.Next(pakli.List.Count - 1);
+                    if (ErtekKiszamitasa(HazKeze) + pakli.List[hanyadik].Ertek <= 21)
+                    {
+                        hazKeze.Add(pakli.List[hanyadik]);
+                        pakli.List.RemoveAt(hanyadik);
+                    }
+                    else
+                    {
+                        mehet = false;
                     }
 
                 }
+                foreach (var item in hazKeze)
+                {
+                    Console.WriteLine(item);
+                }
+                Console.WriteLine($"Az osztó kártyáinak összértéke: {ErtekKiszamitasa(hazKeze)}, A te kártyáid összértéke: {ErtekKiszamitasa(jatekosKeze)}");
+                if (ErtekKiszamitasa(hazKeze) > ErtekKiszamitasa(jatekosKeze))
+                {
+                    Console.WriteLine($"Vesztettél {tet} Ft-ot");
+                    tet = tet * -1;
+                    return tet;
+                }
+                else if (ErtekKiszamitasa(hazKeze) < ErtekKiszamitasa(jatekosKeze))
+                {
+                    Console.WriteLine($"Gratulálok, nyertél {tet * 2} Ft-ot");
+                    tet = tet * 2;
+                    return tet;
+                } else
+                {
+                    Console.WriteLine("Döntetlen, visszakaptad a téted");
+                    return tet;
+                }
 
-            } while (tobbet != "N");
+            }
 
         }
 
@@ -103,6 +162,27 @@ namespace BunBarlang
                 }
             }
             return ertek;
+        }
+
+        private void aszElore(List<Kartya> kez)
+        {
+            int asz = 0;
+
+            foreach (var item in kez)
+            {
+                asz++;
+            }
+            for (int i = 0; i < kez.Count; i++)
+            {
+                if (kez[i].Ertek == 1 && asz > 0)
+                {
+                    kez.Add(kez[i]);
+                    kez.RemoveAt(i);
+                    i--;
+                    asz--;
+                }
+
+            }
         }
     }
 }
