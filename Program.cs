@@ -6,14 +6,12 @@
         {
 
             Pakli pakli = new Pakli();
+            Blackjack blackjack = new Blackjack();
 
 
-            pakli.PakliFeltoltese(2);
+            blackjack.JatekMenet(10);
 
-            foreach (var item in pakli.List)
-            {
-                Console.WriteLine(item);
-            }
+
 
             
             

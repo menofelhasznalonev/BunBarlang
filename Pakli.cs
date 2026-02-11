@@ -13,7 +13,8 @@ namespace BunBarlang
         private List<Kartya> list = new List<Kartya>();
 
 
-        internal List<Kartya> List => list;
+
+        internal List<Kartya> List { get => list; set => list = value; }
 
         public void PakliFeltoltese(int pakliSzam)
         {
@@ -24,7 +25,7 @@ namespace BunBarlang
                     for (int k = 1; k <= 13; k++)
                     {
                         Kartya kartya = new Kartya(j, k);
-                        list.Add(kartya);
+                        List.Add(kartya);
                     }
                 }
             }
