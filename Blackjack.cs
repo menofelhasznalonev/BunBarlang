@@ -20,6 +20,7 @@ namespace BunBarlang
             Pakli pakli = new Pakli();
             int hanyadik = 0;
             string tobbet = "";
+            int asz = 0;
 
             pakli.PakliFeltoltese(2);
 
@@ -41,6 +42,22 @@ namespace BunBarlang
                     tobbet = Console.ReadLine().ToUpper();
                 } while (tobbet != "N" && tobbet != "I");
                
+                foreach (var item in jatekosKeze)
+                {
+                    asz++;
+                }
+                for (int i = 0; i < jatekosKeze.Count; i++)
+                {
+                    if(jatekosKeze[i].Ertek == 1 && asz > 0)
+                    {
+                        jatekosKeze.Add(jatekosKeze[i]);
+                        jatekosKeze.RemoveAt(i);
+                        i--;
+                        asz--;
+                    }
+
+                }
+
             } while (tobbet != "N");
 
         }
@@ -53,13 +70,14 @@ namespace BunBarlang
                 if (item.Ertek >= 10)
                 {
                     ertek += 10;
-                } 
+                }
                 else if (item.Ertek == 1)
                 {
-                    if (ertek+11 > 21)
+                    if (ertek + 11 > 21)
                     {
                         ertek += 1;
-                    } else
+                    }
+                    else
                     {
                         ertek += 11;
                     }
@@ -69,5 +87,6 @@ namespace BunBarlang
                     ertek += item.Ertek;
                 }
             }
+        }
     }
 }
