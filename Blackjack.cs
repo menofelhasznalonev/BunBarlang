@@ -17,17 +17,23 @@ namespace BunBarlang
 
         public int JatekMenet(int tet, int pakliSzam)
         {
+            
+
             Pakli pakli = new Pakli();
             int hanyadik = 0;
             string tobbet = "I";
 
-
+            jatekosKeze.Clear();
+            hazKeze.Clear();
             pakli.PakliFeltoltese(pakliSzam);
+
+            Console.Clear();
 
             hanyadik = r.Next(pakli.List.Count - 1);
             jatekosKeze.Add(pakli.List[hanyadik]);
             pakli.List.RemoveAt(hanyadik);
             Console.WriteLine($"Kártyái:\t {jatekosKeze[0]}");
+            Console.ResetColor();
             Console.WriteLine($"Összértékük: {ErtekKiszamitasa(jatekosKeze)}");
 
             Console.WriteLine();
@@ -39,7 +45,7 @@ namespace BunBarlang
 
             while (tobbet != "N" && ErtekKiszamitasa(jatekosKeze) <= 21)
             {
-
+                Console.Clear();
                 aszElore(jatekosKeze);
 
                 hanyadik = r.Next(pakli.List.Count - 1);
@@ -49,6 +55,7 @@ namespace BunBarlang
                 foreach (var item in jatekosKeze)
                 {
                     Console.WriteLine(item);
+                    Console.ResetColor();
                 }
                 Console.WriteLine($"Összértékük: {ErtekKiszamitasa(jatekosKeze)}");
 
@@ -98,6 +105,7 @@ namespace BunBarlang
                 foreach (var item in hazKeze)
                 {
                     Console.WriteLine(item);
+                    Console.ResetColor();
                 }
                 Console.WriteLine($"Az osztó kártyáinak összértéke: {ErtekKiszamitasa(hazKeze)}, A te kártyáid összértéke: {ErtekKiszamitasa(jatekosKeze)}");
                 if (ErtekKiszamitasa(hazKeze) > ErtekKiszamitasa(jatekosKeze))

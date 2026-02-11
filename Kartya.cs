@@ -64,7 +64,10 @@ namespace BunBarlang
 │     | |   {kiirtErtek}│
 └─────────────┘               
                                     "; break;
-                    case 2: return $@"
+                        
+                    case 2:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        return $@"
 ┌─────────────┐
 │{kiirtErtek}           │
 │   /\   /\   │
@@ -75,8 +78,12 @@ namespace BunBarlang
 │     \ /     │
 │           {kiirtErtek}│
 └─────────────┘         
-                                    "; break;
-                    case 3: return $@"
+                                    ";
+                        
+                        break;
+                    case 3:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        return $@"
 ┌─────────────┐
 |{kiirtErtek}           |
 │     / \     │
@@ -87,7 +94,9 @@ namespace BunBarlang
 │     \ /     │
 │           {kiirtErtek}│
 └─────────────┘          
-                                    "; break;
+                                    ";
+                        
+                        break;
                     case 4: return $@"
 ┌─────────────┐
 │{kiirtErtek}    __     │
@@ -119,7 +128,9 @@ namespace BunBarlang
 │     | |    {kiirtErtek}│
 └─────────────┘              
                                     "; break;
-                    case 2: return $@"
+                    case 2:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        return $@"
 ┌─────────────┐
 │{kiirtErtek}            │
 │   /\   /\   │
@@ -130,8 +141,12 @@ namespace BunBarlang
 │     \ /     │
 │            {kiirtErtek}│
 └─────────────┘       
-                                    "; break;
-                    case 3: return $@"
+                                    ";
+                        
+                        break;
+                    case 3:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        return $@"
 ┌─────────────┐
 |{kiirtErtek}            |
 │     / \     │
@@ -142,7 +157,9 @@ namespace BunBarlang
 │     \ /     │
 │            {kiirtErtek}│
 └─────────────┘          
-                                    "; break;
+                                    ";
+                        
+                        break;
                     case 4: return $@"
 ┌─────────────┐
 │{kiirtErtek}     __     │

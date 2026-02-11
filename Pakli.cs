@@ -18,6 +18,7 @@ namespace BunBarlang
 
         public void PakliFeltoltese(int pakliSzam)
         {
+            list.Clear();
             for (int i = 0; i < pakliSzam; i++) 
             {
                 for (int j = 1; j <= 4; j++)
