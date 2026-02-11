@@ -11,7 +11,8 @@ namespace BunBarlang
 
         private int jel;
         private int ertek;
-        
+        private string kiirtErtek;
+
 
         public Kartya(int jel, int ertek)
         {
@@ -23,50 +24,73 @@ namespace BunBarlang
         public int Jel { get => jel; set => jel = value; }
         public int Ertek { get => ertek; set => ertek = value; }
 
+        private void Stringge()
+        {
+            
+            if (ertek > 10)
+            {
+                switch (ertek)
+                {
+                    case 11: kiirtErtek = "J"; break;
+                    case 12: kiirtErtek = "Q"; break;
+                    case 13: kiirtErtek = "K"; break;
+                }
+            } else if (ertek == 1)
+            {
+                kiirtErtek = "A";
+            } else
+            {
+                kiirtErtek = ertek.ToString();
+            }
+        }
 
         public override string ToString()
         {
-            switch (jel) 
+            Stringge();
+
+            if (ertek == 10)
             {
-                case 1: return $@"
+                switch (jel)
+                {
+                    case 1: return $@"
 ┌─────────────┐
-│{ertek}            │
+│{kiirtErtek}           │
 │      /\     │
 │     /  \    │
 │    /    \   │
 │    \    /   │
 │     \__/    │
 │      ||     │
-│      ||    {ertek}│
+│      ||   {kiirtErtek}│
 └─────────────┘              
-                                    ";break;
-                case 2: return $@"
+                                    "; break;
+                    case 2: return $@"
 ┌─────────────┐
-│{ertek}            │
+│{kiirtErtek}           │
 │     /\  /\  │
 │    /  \/  \ │
 │    \      / │
 │     \    /  │
 │      \  /   │
 │       \/    │
-│            {ertek}│
+│           {kiirtErtek}│
 └─────────────┘         
                                     "; break;
-                case 3: return $@"
+                    case 3: return $@"
 ┌─────────────┐
-|{ertek}            |
+|{kiirtErtek}           |
 │     / \     │
 │    /   \    │
 │   /     \   │
 │   \     /   │
 │    \   /    │
 │     \ /     │
-│            {ertek}│
+│           {kiirtErtek}│
 └─────────────┘          
                                     "; break;
-                case 4: return $@"
+                    case 4: return $@"
 ┌─────────────┐
-│{ertek}     __     │
+│{kiirtErtek}    __     │
 │     /  \    │
 │   _|____|_  │
 │  /   /\   \ │
@@ -74,11 +98,69 @@ namespace BunBarlang
 │      ||     │
 │      ||     │
 │             │
-│            {ertek}│
+│           {kiirtErtek}│
 └─────────────┘             
                                     "; break;
-                default: return "hiba"; break;
+                    default: return "hiba"; break;
+                }
+            } else
+            {
+                switch (jel)
+                {
+                    case 1: return $@"
+┌─────────────┐
+│{kiirtErtek}            │
+│      /\     │
+│     /  \    │
+│    /    \   │
+│    \    /   │
+│     \__/    │
+│      ||     │
+│      ||    {kiirtErtek}│
+└─────────────┘              
+                                    "; break;
+                    case 2: return $@"
+┌─────────────┐
+│{kiirtErtek}            │
+│     /\  /\  │
+│    /  \/  \ │
+│    \      / │
+│     \    /  │
+│      \  /   │
+│       \/    │
+│            {kiirtErtek}│
+└─────────────┘         
+                                    "; break;
+                    case 3: return $@"
+┌─────────────┐
+|{kiirtErtek}            |
+│     / \     │
+│    /   \    │
+│   /     \   │
+│   \     /   │
+│    \   /    │
+│     \ /     │
+│            {kiirtErtek}│
+└─────────────┘          
+                                    "; break;
+                    case 4: return $@"
+┌─────────────┐
+│{kiirtErtek}     __     │
+│     /  \    │
+│   _|____|_  │
+│  /   /\   \ │
+│  \___\/___/ │
+│      ||     │
+│      ||     │
+│             │
+│            {kiirtErtek}│
+└─────────────┘             
+                                    "; break;
+                    default: return "hiba"; break;
+                }
             }
+
+
 
         }
     }
