@@ -44,5 +44,30 @@ namespace BunBarlang
             } while (tobbet != "N");
 
         }
+
+        private void ErtekKiszamitasa(List<Kartya> kez)
+        {
+            int ertek = 0;
+            foreach (var item in kez)
+            {
+                if (item.Ertek >= 10)
+                {
+                    ertek += 10;
+                } 
+                else if (item.Ertek == 1)
+                {
+                    if (ertek+11 > 21)
+                    {
+                        ertek += 1;
+                    } else
+                    {
+                        ertek += 11;
+                    }
+                }
+                else
+                {
+                    ertek += item.Ertek;
+                }
+            }
     }
 }
