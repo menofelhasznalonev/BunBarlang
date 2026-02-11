@@ -13,7 +13,7 @@ namespace BunBarlang
         private int ertek;
         
 
-        public Kartya(int ertek, int jel)
+        public Kartya(int jel, int ertek)
         {
             this.Jel = jel;
             this.Ertek = ertek;
@@ -43,8 +43,8 @@ namespace BunBarlang
                 case 2: return $@"
 ┌─────────────┐
 │{ertek}            │
-│    /\  /\   │
-│   /  \/  \  │
+│     /\  /\  │
+│    /  \/  \ │
 │    \      / │
 │     \    /  │
 │      \  /   │

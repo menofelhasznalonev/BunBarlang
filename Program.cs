@@ -4,7 +4,19 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+
+            Pakli pakli = new Pakli();
+
+
+            pakli.PakliFeltoltese(2);
+
+            foreach (var item in pakli.List)
+            {
+                Console.WriteLine(item);
+            }
+
+            
+            
         }
     }
 }

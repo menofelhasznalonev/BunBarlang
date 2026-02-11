@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,22 +10,18 @@ namespace BunBarlang
 {
     internal class Pakli
     {
-        List<Kartya> list;
+        private List<Kartya> list = new List<Kartya>();
 
-        public Pakli(List<Kartya> list)
-        {
-            this.List = list;
-        }
 
-        internal List<Kartya> List { get => list; set => list = value; }
+        internal List<Kartya> List => list;
 
-        private void PakliFeltoltese(int pakliSzam)
+        public void PakliFeltoltese(int pakliSzam)
         {
             for (int i = 0; i < pakliSzam; i++) 
             {
-                for (int j = 1; j <= 4; i++)
+                for (int j = 1; j <= 4; j++)
                 {
-                    for (int k = 1; k <= 13; i++)
+                    for (int k = 1; k <= 13; k++)
                     {
                         Kartya kartya = new Kartya(j, k);
                         list.Add(kartya);
