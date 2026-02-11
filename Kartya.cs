@@ -9,16 +9,19 @@ namespace BunBarlang
     internal class Kartya
     {
 
-        private int ertek;
         private int jel;
+        private int ertek;
+        
 
         public Kartya(int ertek, int jel)
         {
-            this.Ertek = ertek;
             this.Jel = jel;
+            this.Ertek = ertek;
+       
         }
 
-        public int Ertek { get => ertek; set => ertek = value; }
         public int Jel { get => jel; set => jel = value; }
+        public int Ertek { get => ertek; set => ertek = value; }
+        
     }
 }
