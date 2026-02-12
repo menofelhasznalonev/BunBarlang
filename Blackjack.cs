@@ -39,7 +39,7 @@ namespace BunBarlang
             Console.WriteLine();
             do
             {
-                Console.Write("Kér még lapot? (I/N): ");
+                Console.Write("Kérsz még lapot? (I/N): ");
                 tobbet = Console.ReadLine().ToUpper();
             } while (tobbet != "N" && tobbet != "I");
 
@@ -51,7 +51,7 @@ namespace BunBarlang
                 hanyadik = r.Next(pakli.List.Count - 1);
                 jatekosKeze.Add(pakli.List[hanyadik]);
                 pakli.List.RemoveAt(hanyadik);
-                Console.WriteLine("Kártyái:");
+                Console.WriteLine("Kártyáid:");
                 foreach (var item in jatekosKeze)
                 {
                     Console.WriteLine(item);
@@ -64,7 +64,7 @@ namespace BunBarlang
                     Console.WriteLine();
                     do
                     {
-                        Console.Write("Kér még lapot? (I/N): ");
+                        Console.Write("Kérsz még lapot? (I/N): ");
                         tobbet = Console.ReadLine().ToUpper();
                     } while (tobbet != "N" && tobbet != "I");
                 }

@@ -12,6 +12,7 @@
             int penz = 10000;
             int tet = 0;
             bool mehet = false;
+            bool mehetPakli = false;
             string megegy = "";
             int paklik = 0;
 
@@ -19,18 +20,19 @@
             {
                 Console.Clear();
                 mehet = false;
-                do
+				mehetPakli = false;
+				do
                 {
-                    Console.Write("hány paklival szeretne játszani? (1-10): ");
+                    Console.Write("hány paklival szeretnél játszani? (1-10): ");
                     if (int.TryParse(Console.ReadLine(), out paklik))
                     {
-                        mehet = true;
+                        mehetPakli = true;
                     }
-                } while (!mehet || paklik < 0 || tet >= 10);
-                mehet = false;
+                } while (!mehetPakli || paklik <= 0 || paklik > 10);
+
                 do
                 {
-                    Console.Write($"Mennyi pénzt tesz fel (most van {penz} Ft-ja) : ");
+                    Console.Write($"Mennyi pénzt teszel fel (most van {penz} Ft-ja) : ");
                     if (int.TryParse(Console.ReadLine(), out tet))
                     {
                         mehet = true;
@@ -42,7 +44,7 @@
                 {
                     do
                     {
-                        Console.Write("Szeretne mégegy kört? (I/N): ");
+                        Console.Write("Szeretnél mégegy kört? (I/N): ");
                         megegy = Console.ReadLine().ToUpper();
                     } while (megegy != "N" && megegy != "I");
                 }
