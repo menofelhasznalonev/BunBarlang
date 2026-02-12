@@ -17,6 +17,7 @@ namespace BunBarlang
 
         public int JatekMenet(int tet, int pakliSzam)
         {
+
             
 
             Pakli pakli = new Pakli();
